@@ -1,0 +1,21 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="col-md-12">
+       <div class="card mt-2">
+        <div class="card-body">
+            <form action="" method="POSt">
+                {% csrf_token %}
+                 {{ form }}
+       
+                  <!-- Display the existing image if it exists -->
+                 
+                 <button type="submit" class="btn btn-success btn-block  mt-2">Modifier</button>
+               </form>
+        </div>
+       </div>
+    </div>
+</div>
+
+{% endblock %}

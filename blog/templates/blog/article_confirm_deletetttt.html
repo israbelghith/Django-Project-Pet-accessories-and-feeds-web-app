@@ -1,0 +1,24 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<script>
+    // Function to display the confirmation alert
+    function confirmDelete() {
+        if (confirm("Voulez-vous supprimer cet article?")) {
+            // If the user confirms, submit the form
+            document.getElementById("delete-form").submit();
+        } else {
+            // If the user cancels, do nothing
+            return false;
+        }
+    }
+</script>
+
+<form id="delete-form" action="" method="POST">
+    {% csrf_token %}
+    <!-- Display a button to trigger the confirmation alert -->
+    <button type="button" onclick="confirmDelete()" class="btn btn-danger">Supprimer</button>
+    <!-- Display a button to cancel the action -->
+    <a href="#" class="btn btn-secondary">Non</a>
+</form>
+{% endblock %}

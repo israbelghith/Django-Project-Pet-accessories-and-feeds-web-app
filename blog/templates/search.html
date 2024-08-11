@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>Ministore</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- script
+    ================================================== -->
+    <script src="{% static 'js/modernizr.js' %}"></script>
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
+    <header id="header" class="site-header header-scrolled position-fixed text-black bg-light">
+        {% include '_nav.html' %}
+            </header>
+  
+<br><br><br><br> <br><br><br>
+
+      <div class="container">
+            <div class="row">
+            
+               <!-- -->
+   
+ {% load static %}
+ <section id="latest-blog" >
+   <div class="container">
+     <div class="row">
+      <br><br><br>
+       <div class="display-header d-flex justify-content-between pb-3">
+
+         <h2 class="display-7 text-dark text-uppercase">Articles Cherchée</h2>
+       </div>
+       <div class="row row-cols-1 row-cols-md-3 g-4">
+      
+         {% for prod in liste_Products %}
+         <div class="col">
+           <div class="card h-100"> 
+          
+             {% if article.image == "http://default" %}
+             <a href="{% url 'consulterProd' prod.id %}" > 
+               <img src="{% static 'images/logo.jpg' %}"style="height:450px; max-width: auto" alt="" class="img-fluid">
+             </a>
+              {% else %}
+               <a href="{% url 'consulterProd' prod.id %}" > 
+                  <img src="{{ prod.image.url }}"style="height:450px; max-width: auto" alt="" class="img-fluid">
+              </a>
+              {% endif %}
+           
+             <div class="card-body">
+               <h5 class="card-title">  <a href="{% url 'consulterProd' prod.id %}" >    {{prod.title}}</a></h5>
+               <p class="card-text"> {{prod.desc|truncatewords:8}}</p>
+               <p class="card-text"><small class="text-muted">
+                 
+                   <span class="meta-date"> Publié il y a {{prod.create_at|timesince}}</span>
+              
+               </small></p>
+                <div>
+               <a class="btn btn-primary" href="{% url 'consulterProd' prod.id %}" role="button">consulter</a>
+             </div>
+             </div>
+           
+       </div>
+       </div>
+         {% endfor %}
+</div>
+       </div>
+     </div> <br><br>
+   </div>
+ </section>
+   
+    <footer id="footer" class="overflow-hidden">
+        {% include '_footer.html' %}
+    </footer>
+    <div id="footer-bottom">
+      <div class="container">
+        <div class="row d-flex flex-wrap justify-content-between">
+          <div class="col-md-4 col-sm-6">
+            <div class="Shipping d-flex">
+              <p>We ship with:</p>
+              <div class="card-wrap ps-2">
+                <img src="{% static 'images/dhl.png' %}" alt="visa">
+                <img src="{% static 'images/shippingcard.png' %}" alt="mastercard">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="payment-method d-flex">
+              <p>Payment options:</p>
+              <div class="card-wrap ps-2">
+                <img src="{% static 'images/visa.jpg' %}" alt="visa">
+                <img src="{% static 'images/mastercard.jpg' %}" alt="mastercard">
+                <img src="{% static 'images/paypal.jpg' %}" alt="paypal">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="copyright">
+              <p>© Copyright 2023 MiniStore. Design by <a href="https://templatesjungle.com/">TemplatesJungle</a> Distribution by <a href="https://themewagon.com">ThemeWagon</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>

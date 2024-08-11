@@ -1,0 +1,36 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="col-md-12 mt-2 mb-5">
+       <form action="" method="POSt">
+         {% csrf_token %}
+   
+         <div class="row g-0">
+           <div class="col-md-4">
+            {% if form.instance.image %}
+          
+            <img src="{{ form.instance.image.url }}" style="height:450px; max-width: auto;" alt="" class="img-fluid">
+        {% endif %}         </div>
+           <div class="col-md-8">
+             <div class="card-body">
+               {% for field in form.visible_fields %}
+               {% if field.name != 'image' %}
+                   {{ field.label_tag }}
+                   {{ field }}
+                   {% if field.help_text %}
+                       <small class="form-text text-muted">{{ field.help_text }}</small>
+                   {% endif %}
+                   <br>
+               {% endif %}
+           {% endfor %}
+            </div>
+           </div>
+         </div>
+  
+      </form>
+    </div>
+    
+</div>
+
+{% endblock %}

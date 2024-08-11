@@ -1,0 +1,69 @@
+{% extends 'partials/base.html' %}
+
+
+{% block content%}
+{% load static %}
+<section id="billboard" class="position-relative overflow-hidden bg-light-pink" style="background-color:#7a6d94">
+  <div class="swiper main-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="container">
+          <div class="row d-flex align-items-center" style="height: 350px;">
+            <div class="col-md-6">
+              <div class="banner-content">
+                <h1 class="display-2 text-uppercase text-dark pb-3" style="color:white">Bienvenue Admin !! <i class="fa fa-paw" aria-hidden="true"></i> </h1>
+               <!-- <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Product</a>-->
+              </div>
+            </div>
+            <div class="col-md-2 offset-md-2">
+              <div class="image-holder text-md-end">
+                <img src="{% static 'images/Jojo_Store-bg.png' %}" alt="banner" style="width: 400px; height: 350px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+    </div>
+  </div>
+</section>
+
+
+
+<div class="container">
+    <div class="row">
+   <br><br>
+            
+          </div>
+            <div class="row md-3"  >
+                <div class="col-md-4 offset-md-1">
+                  <div class="card" style="height:300px; width:300px">
+                    <img class="card-img-top" src="{% static 'images/icon_prod1.jpg' %}" style="height:250px; width:300px" alt="Card image cap">
+                    <div class="card-body">
+                     <a href="{% url 'my_products' %}"> <h5 class="card-title">Gestion des Produits</h5></a>
+                    </div>
+                    
+             
+                  </div>
+                </div>
+                <div class="col-md-4 offset-md-2">
+                  <div class="card" style="height:300px; width:300px">
+                    <img class="card-img-top" src="{% static 'images/icon_categ1.jpg' %}"style="height:250px; width:300px"  alt="Card image cap">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="card-body">
+                      <a href="{% url 'my_categories' %}">  <h5 class="card-title">Gestion des Categories</h5></a>
+                    </div>
+
+              
+
+                </div>
+              </div>
+
+
+                </div>
+
+        </div>
+    </div>
+</div>
+<br><br><br><br>
+{% endblock %}

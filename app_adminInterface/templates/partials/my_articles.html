@@ -1,0 +1,87 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+           <h2>Mes Produits</h2> 
+        </div>
+        <div class="col-md-12 mb-3 d-flex justify-content-end">
+            <a href="{% url 'add_product' %}" class="btn btn-success"><i class="fas fa-plus"></i><span>+</span>  Ajouter Produit</a>
+        </div>
+        <br>
+        <div class="col-md-12">
+          
+            {% if list_Products %}
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr  class="h5">
+                                <th>Titre</th>
+                                <th>Description</th>
+                                <th>Prix</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for prod in list_Products %}
+                             <tr>  
+                                <td><a class="h6">{{prod.title}}</a></td>
+                                <td><a class="h6">{{prod.desc|truncatewords:10}}</a></td>
+                                <td><a class="h6">{{prod.price}}</a></td>
+                            <td>
+                                <a href="{% url 'read_prod' prod.pk %}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i></a>
+                                    <a href="{% url 'update_prod' prod.pk %}" class="btn btn-info btn-sm"><i class="bi bi-pen"></i></a>
+                                    <!-- Delete button with JavaScript confirmation -->
+                                        <button type="link" onclick="deleteArticle('{{ prod.pk }}')" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+<!-- 
+    <form id="delete-form" action="" method="POST">                              
+<button onclick="deleteArticle('{{ article.pk }}')" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                                </form>
+                           
+<form id="delete-form" action="" method="POST">
+    {% csrf_token %}
+  -- Display a button to trigger the confirmation alert --
+    <button type="button" onclick="deleteArticle('{{ article.pk }}')" class="btn btn-danger"><i class="bi bi-trash"></i> </button>
+
+</form>
+-->
+                                 </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+          
+            {% else %}
+            <p>Vous n'avez pas des Produits </p>
+            {% endif %}
+        </div>
+    </div>
+    <br><br><br>
+</div>
+<script>
+    function deleteArticle(articleId) {
+      /*  if (articleId) {
+            // Construct the delete URL
+            var deleteUrl = 'my_articles/delete_article/' + articleId;
+            // Redirect to delete URL
+            document.getElementById("delete-form").submit();// window.location.href = deleteUrl;
+        } else {
+            console.error("Article ID is empty.");
+        }*/
+        
+        if (confirm("Voulez-vous supprimer ce Produit ?")) {
+            // If the user confirms, submit the form
+            var deleteUrl = 'delete_product/' + articleId;
+            // Redirect to delete URL
+            window.location.href = deleteUrl;// window.location.href = deleteUrl;
+        } else {
+            // If the user cancels, do nothing
+            return false;
+        }
+    }
+</script>
+{% endblock %}
